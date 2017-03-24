@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class Principal extends javax.swing.JFrame {
     public Principal() {
@@ -17,8 +19,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        tf_username = new javax.swing.JTextField();
+        pf_password = new javax.swing.JPasswordField();
         jButton7 = new javax.swing.JButton();
         jd_ingresar = new javax.swing.JDialog();
         jButton8 = new javax.swing.JButton();
@@ -67,6 +69,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_usuarios = new javax.swing.JTable();
         jd_arbol_playlists = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jt_playlists = new javax.swing.JTree();
         jd_explorar = new javax.swing.JDialog();
         cb_albums_explorar = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -79,7 +83,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         tf_nombre_playlist = new javax.swing.JTextField();
         jButton16 = new javax.swing.JButton();
-        jd_listar_playlists = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -118,8 +121,8 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
+                            .addComponent(tf_username)
+                            .addComponent(pf_password, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
                     .addGroup(jd_loginLayout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jButton7)))
@@ -133,11 +136,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jd_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jButton7)
                 .addGap(39, 39, 39))
@@ -145,6 +148,11 @@ public class Principal extends javax.swing.JFrame {
 
         jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton8.setText("Explorar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton9.setText("Crear Playlist");
@@ -156,12 +164,22 @@ public class Principal extends javax.swing.JFrame {
 
         jButton10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton10.setText("Ver Playlists");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton11.setText("Ver Favoritos");
 
         jButton12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton12.setText("Salir");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_ingresarLayout = new javax.swing.GroupLayout(jd_ingresar.getContentPane());
         jd_ingresar.getContentPane().setLayout(jd_ingresarLayout);
@@ -486,15 +504,25 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jTabbedPane2)
         );
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Playlists");
+        jt_playlists.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane4.setViewportView(jt_playlists);
+
         javax.swing.GroupLayout jd_arbol_playlistsLayout = new javax.swing.GroupLayout(jd_arbol_playlists.getContentPane());
         jd_arbol_playlists.getContentPane().setLayout(jd_arbol_playlistsLayout);
         jd_arbol_playlistsLayout.setHorizontalGroup(
             jd_arbol_playlistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_arbol_playlistsLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jd_arbol_playlistsLayout.setVerticalGroup(
             jd_arbol_playlistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_arbol_playlistsLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         cb_albums_explorar.addItemListener(new java.awt.event.ItemListener() {
@@ -543,6 +571,11 @@ public class Principal extends javax.swing.JFrame {
         );
 
         mi_agregar_playlist.setText("Agregar a Playlist");
+        mi_agregar_playlist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mi_agregar_playlistActionPerformed(evt);
+            }
+        });
         pp_menu.add(mi_agregar_playlist);
 
         mi_agregar_favorito.setText("Agregar a Favoritos");
@@ -590,17 +623,6 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButton16)
                 .addGap(53, 53, 53))
-        );
-
-        javax.swing.GroupLayout jd_listar_playlistsLayout = new javax.swing.GroupLayout(jd_listar_playlists.getContentPane());
-        jd_listar_playlists.getContentPane().setLayout(jd_listar_playlistsLayout);
-        jd_listar_playlistsLayout.setHorizontalGroup(
-            jd_listar_playlistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jd_listar_playlistsLayout.setVerticalGroup(
-            jd_listar_playlistsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -765,6 +787,7 @@ public class Principal extends javax.swing.JFrame {
             password = pf_password_usuario.getText();
             user = new Usuarios(nombre, edad, username, password, new Playlists());
             lista_usuarios.add(user);
+
             JOptionPane.showMessageDialog(this, "Se ha creado el usuario exitosamente");
             
             DefaultTableModel modelo = (DefaultTableModel) tabla_usuarios.getModel();
@@ -798,7 +821,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         boolean entro = false;
         for (Usuarios temp : lista_usuarios) {
-            if (temp.getUsername().equals(tf_username_usuario.getText()) && temp.getPassword().equals(pf_password_usuario.getText())) {
+            if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
                 entro = true;
             }
         }
@@ -831,7 +854,7 @@ public class Principal extends javax.swing.JFrame {
         
         
         for (Usuarios temp : lista_usuarios) {
-            if (temp.getUsername().equals(tf_username_usuario.getText()) && temp.getPassword().equals(pf_password_usuario.getText())) {
+            if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
                 for (Albums t : lista_albums) {
                     for (int i = 0; i < t.getCanciones().size(); i++) {
                         Object[] row = {
@@ -857,7 +880,7 @@ public class Principal extends javax.swing.JFrame {
         
         
         for (Usuarios temp : lista_usuarios) {
-            if (temp.getUsername().equals(tf_username_usuario.getText()) && temp.getPassword().equals(pf_password_usuario.getText())) {
+            if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
                 for (Albums t : lista_albums) {
                     for (int i = 0; i < t.getCanciones().size(); i++) {
                         Object[] row = {
@@ -888,13 +911,69 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        String nombre;
         try {
-            nombre = tf_nombre_playlist.getText();
-            user.setPlaylist(new Playlists(nombre));
+            for (Usuarios temp : lista_usuarios) {
+                if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
+                    nombre_arbol = tf_nombre_playlist.getText();
+                    user.setPlaylist(new Playlists(nombre_arbol));
+                    JOptionPane.showMessageDialog(this, "Se ha creado la playlist exitosamente");
+                }
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        this.jd_arbol_playlists.setModal(true);
+        this.jd_arbol_playlists.pack();
+        this.jd_arbol_playlists.setLocationRelativeTo(this);
+        this.jd_arbol_playlists.setVisible(true);
+        
+        for (Usuarios temp : lista_usuarios) {
+            if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
+                DefaultTreeModel m = (DefaultTreeModel) jt_playlists.getModel();
+                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+                DefaultMutableTreeNode playlists = new DefaultMutableTreeNode(new Playlists(nombre_arbol));
+                DefaultMutableTreeNode cancion;
+                for (Usuarios t : lista_usuarios) {
+                    for (int i = 0; i < t.getPlaylists().size(); i++) {
+                        playlists = new DefaultMutableTreeNode(new Playlists(t.getPlaylists().get(i).getNombre()));
+                        for (Albums te : lista_albums) {
+                            for (int j = 0; j < te.getCanciones().size(); j++) {
+                                cancion = new DefaultMutableTreeNode(new Canciones(te.getCanciones().get(i).getNombre()));
+                                playlists.add(cancion);
+                            }
+                        }
+                    }
+                }
+                raiz.add(playlists);
+                DefaultMutableTreeNode fav = new DefaultMutableTreeNode("Favoritos");
+                raiz.add(fav);
+                m.reload();
+            }
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        this.jd_explorar.setModal(true);
+        this.jd_explorar.pack();
+        this.jd_explorar.setLocationRelativeTo(this);
+        this.jd_explorar.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        this.jd_ingresar.dispose();
+        tf_username.setText("");
+        pf_password.setText("");
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void mi_agregar_playlistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mi_agregar_playlistActionPerformed
+        for (Albums temp : lista_albums) {
+            for (int i = 0; i < temp.getCanciones().size(); i++) {
+                
+            }
+        }
+    }//GEN-LAST:event_mi_agregar_playlistActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -962,24 +1041,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JDialog jd_albums;
     private javax.swing.JDialog jd_arbol_playlists;
     private javax.swing.JDialog jd_canciones;
     private javax.swing.JDialog jd_explorar;
     private javax.swing.JDialog jd_ingresar;
-    private javax.swing.JDialog jd_listar_playlists;
     private javax.swing.JDialog jd_login;
     private javax.swing.JDialog jd_playlists;
     private javax.swing.JDialog jd_usuario;
+    private javax.swing.JTree jt_playlists;
     private javax.swing.JMenuItem mi_agregar_favorito;
     private javax.swing.JMenuItem mi_agregar_playlist;
+    private javax.swing.JPasswordField pf_password;
     private javax.swing.JPasswordField pf_password_usuario;
     private javax.swing.JPopupMenu pp_menu;
     private javax.swing.JTable tabla;
@@ -994,10 +1073,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombre_cancion;
     private javax.swing.JTextField tf_nombre_playlist;
     private javax.swing.JTextField tf_nombre_usuario;
+    private javax.swing.JTextField tf_username;
     private javax.swing.JTextField tf_username_usuario;
     // End of variables declaration//GEN-END:variables
     ArrayList<Albums> lista_albums = new ArrayList();
     ArrayList<Usuarios> lista_usuarios = new ArrayList();
     AdminUsuarios au = new AdminUsuarios("./Usuarios.cbm");
     Usuarios user = new Usuarios();
+    String nombre_arbol;
 }

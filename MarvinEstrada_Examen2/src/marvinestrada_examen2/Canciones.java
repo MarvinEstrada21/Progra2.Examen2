@@ -16,7 +16,11 @@ public class Canciones {
         this.genero = genero;
         this.album = album;
     }
- 
+
+    public Canciones(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public String getNombre() {
         return nombre;
     }
