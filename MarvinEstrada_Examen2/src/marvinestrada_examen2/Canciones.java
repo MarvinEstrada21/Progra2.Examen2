@@ -4,17 +4,19 @@ public class Canciones {
     private String artista;
     private int duracion;
     private String genero;
+    private Albums album;
 
     public Canciones() {
     }
 
-    public Canciones(String nombre, String artista, int duracion, String genero) {
+    public Canciones(String nombre, String artista, int duracion, String genero, Albums album) {
         this.nombre = nombre;
         this.artista = artista;
         this.duracion = duracion;
         this.genero = genero;
+        this.album = album;
     }
-
+ 
     public String getNombre() {
         return nombre;
     }
@@ -45,6 +47,14 @@ public class Canciones {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public Albums getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Albums album) {
+        this.album = album;
     }
 
     @Override

@@ -50,9 +50,7 @@ public class AdminUsuarios {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Usuarios temp : lista_usuarios) {
-                bw.writeObject(temp);
-            }
+            bw.writeObject(lista_usuarios);
             bw.flush();
         } catch (Exception ex) {
         } finally{
@@ -75,7 +73,7 @@ public class AdminUsuarios {
                 
                 try {
                     while((temp = (Usuarios) objeto.readObject())!=null){
-                        lista_usuarios.add(temp);
+                        lista_usuarios = (ArrayList<Usuarios>)objeto.readObject();
                     }
                 } catch (EOFException e) {
        
