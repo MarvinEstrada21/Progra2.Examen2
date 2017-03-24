@@ -931,25 +931,31 @@ public class Principal extends javax.swing.JFrame {
         
         for (Usuarios temp : lista_usuarios) {
             if (temp.getUsername().equals(tf_username.getText()) && temp.getPassword().equals(pf_password.getText())) {
-                DefaultTreeModel m = (DefaultTreeModel) jt_playlists.getModel();
-                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
-                DefaultMutableTreeNode playlists = new DefaultMutableTreeNode(new Playlists(nombre_arbol));
-                DefaultMutableTreeNode cancion;
-                for (Usuarios t : lista_usuarios) {
-                    for (int i = 0; i < t.getPlaylists().size(); i++) {
-                        playlists = new DefaultMutableTreeNode(new Playlists(t.getPlaylists().get(i).getNombre()));
-                        for (Albums te : lista_albums) {
-                            for (int j = 0; j < te.getCanciones().size(); j++) {
-                                cancion = new DefaultMutableTreeNode(new Canciones(te.getCanciones().get(i).getNombre()));
-                                playlists.add(cancion);
-                            }
-                        }
-                    }
-                }
-                raiz.add(playlists);
-                DefaultMutableTreeNode fav = new DefaultMutableTreeNode("Favoritos");
-                raiz.add(fav);
-                m.reload();
+                /*DefaultTreeModel m = (DefaultTreeModel) jt_playlists.getModel (); 
+                DefaultMutableTreeNode Root1 = (DefaultMutableTreeNode) m.getRoot (); 
+                DefaultMutableTreeNode tipo_categoria; 
+                tipo_categoria = nodo_Playlist; 
+                DefaultMutableTreeNode node; 
+                node = new DefaultMutableTreeNode (playlist); 
+                DefaultMutableTreeNode nombre_can; 
+                for (Playlists te : ){
+                    nombre_can = new DefaultMutableTreeNode (t.getNombre ()); 
+                    node.add (nombre_can); 
+                } 
+                tipo_categoria.add (node); 
+                Root1.add (tipo_categoria); 
+                m.reload ();
+                m = (DefaultTreeModel) jt_playlists.getModel (); 
+                Root1 = (DefaultMutableTreeNode) m.getRoot (); 
+                tipo_categoria = nodo_Cancion; 
+                node = new DefaultMutableTreeNode (songs); 
+                for (Usuarios t : lista_usuarios){
+                    nombre_can = new DefaultMutableTreeNode (t.getNombre ()); 
+                    node.add (nombre_can); 
+                } 
+                tipo_categoria.add (node); 
+                Root1.add (tipo_categoria); 
+                m.reload ();     */       
             }
         }
     }//GEN-LAST:event_jButton10ActionPerformed
